@@ -21,8 +21,6 @@
     .info-box { background: #f1f7ff; border-left: 4px solid #0c5dbb; padding: 14px 18px; border-radius: 12px; margin-bottom: 18px; }
     .tng-box { background: #fffaf1; border: 1px solid #ffe2b5; border-radius: 16px; padding: 18px; margin-bottom: 22px; }
     .tng-box p { margin: 6px 0; }
-    .success-message { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 10px; padding: 12px; margin-bottom: 20px; display: none; }
-    .error-message { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 10px; padding: 12px; margin-bottom: 20px; display: none; }
     @media (max-width: 640px) { main { padding: 26px; } }
   </style>
 </head>
@@ -43,19 +41,11 @@
       <h2 style="margin-top:0; font-size:1.15rem; color:#b06900;">Touch 'n Go eWallet · Ong Soon Chong</h2>
       <p><strong>TNG ID / Mobile:</strong> 133083049</p>
       <p><em>Reference:</em> DIY Plumbing Workshop</p>
-      <p style="font-size:0.9rem; color:#8a5a00;"></p>
     </div>
 
-    <!-- Success/Error messages -->
-    <div id="successMessage" class="success-message">✅ Registration submitted! Please proceed with payment as instructed above.</div>
-    <div id="errorMessage" class="error-message">❌ Submission failed. Please try again or email purchasingpoweruser@gmail.com directly.</div>
-
-    <form id="registrationForm" action="https://web3forms.com/submit" method="POST">
-      <!-- WEB3FORMS ACCESS KEY (YOUR KEY INSERTED) -->
+    <form action="https://web3forms.com/submit" method="POST">
+      <!-- WEB3FORMS ACCESS KEY -->
       <input type="hidden" name="access_key" value="c60d0bb1-1f62-4d0d-a8fe-62de0eee1edf">
-      
-      <!-- Email where you want submissions sent (optional - Web3Forms uses your access key email) -->
-      <input type="hidden" name="from_name" value="DIY Plumbing Workshop Registration">
       
       <!-- Email subject -->
       <input type="hidden" name="subject" value="New DIY Plumbing Registration">
@@ -63,13 +53,13 @@
       <!-- Redirect after success (your thanks page) -->
       <input type="hidden" name="redirect" value="https://ronald-tech888.github.io/diy-plumbing-workshop/thanks.html">
       
-      <!-- CC emails (Web3Forms supports CC) -->
+      <!-- CC emails -->
       <input type="hidden" name="cc" value="midasmines@gmail.com,desmondsia.everlifestyle@gmail.com">
       
-      <!-- Spam prevention (honeypot - leave empty) -->
+      <!-- Spam prevention (honeypot) -->
       <input type="checkbox" name="botcheck" style="display: none;">
       
-      <!-- Optional: Auto-reply to the person filling the form -->
+      <!-- Auto-reply to the person filling the form -->
       <input type="hidden" name="auto_reply" value="Thank you for registering! We've received your workshop registration. Please send your payment slip to WhatsApp +6013-308-3049 or email purchasingpoweruser@gmail.com to confirm your seat.">
       
       <label for="full-name">Full Name *</label>
@@ -116,72 +106,5 @@
     </form>
     <p class="help" style="margin-top:24px;">Having issues with the form? Email the details to purchasingpoweruser@gmail.com.</p>
   </main>
-
-  <script>
-    // Handle form submission with AJAX (so you can show success/error messages without leaving the page)
-    const form = document.getElementById('registrationForm');
-    const successDiv = document.getElementById('successMessage');
-    const errorDiv = document.getElementById('errorMessage');
-    const submitBtn = form.querySelector('button[type="submit"]');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      // Hide any previous messages
-      successDiv.style.display = 'none';
-      errorDiv.style.display = 'none';
-      
-      // Disable button to prevent double submission
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting...';
-      
-      // Collect form data
-      const formData = new FormData(form);
-      
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: formData
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-          // Show success message
-          successDiv.style.display = 'block';
-          
-          // Scroll to success message
-          successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          
-          // Optionally redirect after 3 seconds
-          const redirectUrl = form.querySelector('input[name="redirect"]')?.value;
-          if (redirectUrl) {
-            setTimeout(() => {
-              window.location.href = redirectUrl;
-            }, 3000);
-          } else {
-            // Reset form if no redirect
-            form.reset();
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit & Continue to Payment';
-          }
-        } else {
-          // Show error message
-          errorDiv.style.display = 'block';
-          errorDiv.textContent = '❌ ' + (result.message || 'Submission failed. Please try again.');
-          errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit & Continue to Payment';
-        }
-      } catch (error) {
-        // Show error message
-        errorDiv.style.display = 'block';
-        errorDiv.textContent = '❌ Network error. Please check your connection and try again.';
-        errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit & Continue to Payment';
-      }
-    });
-  </script>
 </body>
 </html>
