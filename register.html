@@ -10,7 +10,7 @@
     main { max-width: 720px; margin: -30px auto 60px; background: #fff; border-radius: 16px; box-shadow: 0 15px 45px rgba(15,40,90,0.12); padding: 40px; }
     h1, h2 { margin-top: 0; }
     label { display: block; font-weight: 600; margin: 18px 0 6px; }
-    input[type="text"], input[type="email"], textarea { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #d9dbe1; font-size: 1rem; box-sizing: border-box; }
+    input[type="text"], input[type="email"], input[type="tel"], textarea { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #d9dbe1; font-size: 1rem; box-sizing: border-box; }
     textarea { min-height: 110px; resize: vertical; }
     .radio-group, .checkbox-group { display: grid; gap: 8px; margin: 10px 0 4px; }
     .radio-option, .checkbox-option { background: #f7f8fc; border-radius: 10px; padding: 10px 12px; border: 1px solid transparent; }
@@ -69,7 +69,7 @@
       <input type="email" id="email" name="Email" placeholder="you@example.com" required>
 
       <label for="whatsapp">WhatsApp / Mobile Number *</label>
-      <input type="text" id="whatsapp" name="WhatsApp / Mobile" placeholder="e.g., +6013-308-3049" required>
+      <input type="tel" id="whatsapp" name="WhatsApp / Mobile" placeholder="e.g., +6013-308-3049" required pattern="^\+?[0-9\-\s]{8,20}$" title="Please enter a valid phone number with country code">
       <p class="help">Include country code if you are outside Malaysia.</p>
 
       <label>Ticket Selection *</label>
@@ -97,10 +97,12 @@
       <label for="notes">Special notes / plumbing questions (optional)</label>
       <textarea id="notes" name="Additional Notes" placeholder="Let us know if you have specific fixtures, rental units, or issues you want to focus on."></textarea>
 
-      <label class="checkbox-option" style="margin-top:22px;">
-        <input type="checkbox" name="Seat Confirmation" value="I acknowledge the payment policy" required>
-        I understand seats are confirmed only after payment slip is sent. Replacements allowed; no refunds within 3 days of the workshop.
-      </label>
+      <div class="checkbox-group" style="margin-top:22px;">
+        <label class="checkbox-option">
+          <input type="checkbox" name="Seat Confirmation" value="I acknowledge the payment policy" required>
+          I understand seats are confirmed only after payment slip is sent. Replacements allowed; no refunds within 3 days of the workshop.
+        </label>
+      </div>
 
       <button type="submit">Submit & Continue to Payment</button>
     </form>
