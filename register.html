@@ -43,30 +43,27 @@
       <p><em>Reference:</em> DIY Plumbing Workshop</p>
     </div>
 
-    <form action="https://web3forms.com/submit" method="POST">
-      <!-- WEB3FORMS ACCESS KEY -->
-      <input type="hidden" name="access_key" value="c60d0bb1-1f62-4d0d-a8fe-62de0eee1edf">
+    <!-- UPDATED: Formspree endpoint -->
+    <form action="https://formspree.io/f/mojbnpwl" method="POST">
       
-      <!-- Email subject -->
-      <input type="hidden" name="subject" value="New DIY Plumbing Registration">
+      <!-- Formspree required fields -->
+      <input type="hidden" name="_subject" value="New DIY Plumbing Registration">
+      <input type="hidden" name="_replyto" value="email">
       
-      <!-- Redirect after success - USE RELATIVE PATH -->
-      <input type="hidden" name="redirect" value="thanks.html">
+      <!-- Redirect after success -->
+      <input type="hidden" name="_next" value="https://ronald-tech888.github.io/diy-plumbing-workshop/thanks.html">
       
-      <!-- CC emails -->
-      <input type="hidden" name="cc" value="midasmines@gmail.com,desmondsia.everlifestyle@gmail.com">
+      <!-- CC emails - Note: Formspree handles this differently -->
+      <!-- You'll need to set up email forwarding in Formspree dashboard -->
       
-      <!-- Spam prevention (honeypot) -->
-      <input type="checkbox" name="botcheck" style="display: none;">
-      
-      <!-- Auto-reply to the person filling the form -->
-      <input type="hidden" name="auto_reply" value="Thank you for registering! We've received your workshop registration. Please send your payment slip to WhatsApp +6013-308-3049 or email purchasingpoweruser@gmail.com to confirm your seat.">
+      <!-- Spam prevention -->
+      <input type="text" name="_gotcha" style="display:none;">
       
       <label for="full-name">Full Name *</label>
       <input type="text" id="full-name" name="Full Name" placeholder="e.g., Nur Aisyah Tan" required>
 
       <label for="email">Email Address *</label>
-      <input type="email" id="email" name="Email" placeholder="you@example.com" required>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
 
       <label for="whatsapp">WhatsApp / Mobile Number *</label>
       <input type="tel" id="whatsapp" name="WhatsApp / Mobile" placeholder="e.g., +6013-308-3049" required pattern="^\+?[0-9\-\s]{8,20}$" title="Please enter a valid phone number with country code">
